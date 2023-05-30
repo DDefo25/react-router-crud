@@ -1,24 +1,27 @@
-import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.css'
 import './App.css';
+import {Routes, Route} from 'react-router-dom'
+import Posts from './components/Posts';
+import NewPost from './components/NewPost';
+import PostView from './components/PostView'
+import PostEdit from './components/PostEdit';
+import Page404 from './components/Page404';
+import Redirect from './components/Redirect';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="container mb-2">
+      <Routes>
+        <Route path="/posts" exact element={<Posts />} />
+        <Route path='/' element={<Redirect />}/>
+        <Route path="/posts/new" element={<NewPost />} />
+        <Route path="/posts/:rId" element={<PostView />} />
+        <Route path="/posts/:rId/edit" element={<PostEdit />} />
+        <Route path="*" element={<Page404 />} />
+      </Routes>
+      </div>
+    </>
   );
 }
 
